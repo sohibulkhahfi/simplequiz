@@ -181,6 +181,8 @@ for (let i = 0; i < 10; i++) {
     pelafalan: currentKosakata.pelafalan,
     arti: currentKosakata.arti,
     contohKalimat: currentKosakata.contohKalimat,
+    pelafalanKalimat: currentKosakata.pelafalanKalimat,
+    artiKalimat: currentKosakata.artiKalimat,
     question: "Kata manakah yang berarti " + currentKosakata.arti + "?",
     answers: [
       {
@@ -219,6 +221,7 @@ for (let i = 0; i < 10; i++) {
 const quiestionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const explane = document.getElementById("explane");
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -235,6 +238,13 @@ function showQuestion() {
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
   quiestionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+  console.log(currentQuestion);
+  const exampleSentence = document.getElementById("exampleSentence");
+  const meaningOfSentence = document.getElementById("meaningOfSentence");
+  const pronunciation = document.getElementById("pronunciation");
+  exampleSentence.innerHTML = currentQuestion.contohKalimat;
+  pronunciation.innerHTML = `(${currentQuestion.pelafalanKalimat})`;
+  meaningOfSentence.innerHTML = currentQuestion.artiKalimat;
 
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
@@ -250,6 +260,7 @@ function showQuestion() {
 
 function resetState() {
   nextButton.style.display = "none";
+  explane.style.display = "none";
   while (answerButtons.firstChild) {
     answerButtons.removeChild(answerButtons.firstChild);
   }
@@ -279,6 +290,7 @@ function selectAnswer(e) {
   });
   showMeaning();
   nextButton.style.display = "block";
+  explane.style.display = "block";
 }
 
 function showScore() {
@@ -304,5 +316,25 @@ nextButton.addEventListener("click", () => {
     startQuiz();
   }
 });
+
+function speakInKorean() {
+  const textToSpeak = document.getElementById("pronunciation").innerText;
+
+  // Ganti kode berikut dengan panggilan API Text-to-Speech ke layanan bahasa Korea yang Anda gunakan.
+  // Misalnya, Google Text-to-Speech API, IBM Watson Text-to-Speech, atau layanan TTS lainnya.
+  // Di bawah ini adalah contoh kode untuk menggunakan sintesis suara bawaan browser, yang dapat
+  // digunakan jika browser mendukungnya.
+
+  if ("speechSynthesis" in window) {
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = textToSpeak;
+    msg.rate = 0.8; // Mengurangi kecepatan pengucapan menjadi setengah dari kecepatan default (1.0)
+    msg.lang = "ko-KR"; // Kode bahasa untuk bahasa Korea
+    speechSynthesis.speak(msg);
+  } else {
+    // Penanganan jika browser tidak mendukung sintesis suara.
+    alert("Maaf, browser Anda tidak mendukung sintesis suara.");
+  }
+}
 
 startQuiz();

@@ -71,3 +71,12 @@ body {
 .hidden {
   display: none;
 }
+
+#explane {
+  margin-top: 20px;
+  display: none;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  
+}
