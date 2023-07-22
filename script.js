@@ -1,167 +1,27 @@
-const kosakataKorea = [
-  {
-    hangeul: "안녕하세요",
-    pelafalan: "annyeonghaseyo",
-    arti: "Halo",
-    contohKalimat: "안녕하세요! 저는 한국에서 왔어요.",
-    pelafalanKalimat: "annyeonghaseyo! Jeoneun Hangukeseo wasseoyo.",
-    artiKalimat: "Halo! Saya berasal dari Korea.",
-  },
-  {
-    hangeul: "감사합니다",
-    pelafalan: "gamsahamnida",
-    arti: "Terima kasih",
-    contohKalimat: "감사합니다, 친절하시네요.",
-    pelafalanKalimat: "gamsahamnida, chinjeolhasineyo.",
-    artiKalimat: "Terima kasih, Anda sangat ramah.",
-  },
-  {
-    hangeul: "사랑해요",
-    pelafalan: "saranghaeyo",
-    arti: "Aku cinta padamu",
-    contohKalimat: "엄마, 사랑해요!",
-    pelafalanKalimat: "eomma, saranghaeyo!",
-    artiKalimat: "Ibu, aku mencintaimu!",
-  },
-  {
-    hangeul: "미안해요",
-    pelafalan: "mianhaeyo",
-    arti: "Maaf",
-    contohKalimat: "미안해요, 제가 실수했어요.",
-    pelafalanKalimat: "mianhaeyo, jega silsuhaesseoyo.",
-    artiKalimat: "Maaf, saya membuat kesalahan.",
-  },
-  {
-    hangeul: "네",
-    pelafalan: "ne",
-    arti: "Ya",
-    contohKalimat: "네, 알겠습니다.",
-    pelafalanKalimat: "ne, algesseumnida.",
-    artiKalimat: "Ya, saya mengerti.",
-  },
-  {
-    hangeul: "아니요",
-    pelafalan: "aniyo",
-    arti: "Tidak",
-    contohKalimat: "아니요, 그것은 틀렸어요.",
-    pelafalanKalimat: "aniyo, geugeoseun teullyeosseoyo.",
-    artiKalimat: "Tidak, itu salah.",
-  },
-  {
-    hangeul: "어떻게요",
-    pelafalan: "eotteokeyo",
-    arti: "Bagaimana?",
-    contohKalimat: "오늘 저녁에 뭐 해요? 어떻게요?",
-    pelafalanKalimat: "oneul jeonyeoge mwo haeyo? eotteokeyo?",
-    artiKalimat: "Apa yang akan kita lakukan malam ini? Bagaimana?",
-  },
-  {
-    hangeul: "뭐",
-    pelafalan: "mwo",
-    arti: "Apa?",
-    contohKalimat: "뭐? 이해하지 못해요.",
-    pelafalanKalimat: "mwo? ihaehaji mothaeyo.",
-    artiKalimat: "Apa? Saya tidak mengerti.",
-  },
-  {
-    hangeul: "이해해요",
-    pelafalan: "ihaehaeyo",
-    arti: "Saya mengerti",
-    contohKalimat: "네 말을 이해해요.",
-    pelafalanKalimat: "ne mareul ihaehaeyo.",
-    artiKalimat: "Saya mengerti apa yang kamu katakan.",
-  },
-  {
-    hangeul: "좋아요",
-    pelafalan: "joayo",
-    arti: "Bagus / Suka",
-    contohKalimat: "이 음식 정말 맛있어요. 많이 좋아요.",
-    pelafalanKalimat: "i eumsik jeongmal masisseoyo. manhi joayo.",
-    artiKalimat: "Makanan ini sangat lezat. Saya sangat menyukainya.",
-  },
-  {
-    hangeul: "싫어요",
-    pelafalan: "sireoyo",
-    arti: "Tidak suka",
-    contohKalimat: "저는 고양이를 좋아해요, 하지만 개는 싫어요.",
-    pelafalanKalimat: "jeoneun goyangireul joahaeyo, hajiman gaeneun sireoyo.",
-    artiKalimat: "Saya suka kucing, tapi saya tidak suka anjing.",
-  },
-  {
-    hangeul: "도와주세요",
-    pelafalan: "dowajuseyo",
-    arti: "Tolong bantu saya",
-    contohKalimat: "제가 방금 지갑을 잃어버렸어요. 도와주세요!",
-    pelafalanKalimat: "jega banggeum jigaubeoryeosseoyo. dowajuseyo!",
-    artiKalimat: "Saya baru saja kehilangan dompet saya. Tolong bantu saya!",
-  },
-  {
-    hangeul: "물",
-    pelafalan: "mul",
-    arti: "Air",
-    contohKalimat: "목이 마르네요. 물 주세요.",
-    pelafalanKalimat: "mogi mareuneyo. mul juseyo.",
-    artiKalimat: "Saya haus. Tolong berikan air.",
-  },
-  {
-    hangeul: "음식",
-    pelafalan: "eumsik",
-    arti: "Makanan",
-    contohKalimat: "한국 음식은 매우 맛있어요.",
-    pelafalanKalimat: "Hanguk eumsikeun maeu masisseoyo.",
-    artiKalimat: "Makanan Korea sangat lezat.",
-  },
-  {
-    hangeul: "학교",
-    pelafalan: "hakgyo",
-    arti: "Sekolah",
-    contohKalimat: "저는 학교에 갑니다.",
-    pelafalanKalimat: "jeoneun hakgyoe gamnida.",
-    artiKalimat: "Saya pergi ke sekolah.",
-  },
-  {
-    hangeul: "집",
-    pelafalan: "jip",
-    arti: "Rumah",
-    contohKalimat: "오늘은 집에서 쉬겠어요.",
-    pelafalanKalimat: "oneureun jibeseo swigesseoyo.",
-    artiKalimat: "Hari ini saya akan istirahat di rumah.",
-  },
-  {
-    hangeul: "친구",
-    pelafalan: "chingu",
-    arti: "Teman",
-    contohKalimat: "저의 친구들과 함께 파티에 가요.",
-    pelafalanKalimat: "jeoui chingudeulgwa hamkke patie gayo.",
-    artiKalimat: "Saya akan pergi ke pesta bersama teman-teman saya.",
-  },
-  {
-    hangeul: "가방",
-    pelafalan: "gabang",
-    arti: "Tas",
-    contohKalimat: "가방을 잊어버렸어요. 집에 다시 가져와야 해요.",
-    pelafalanKalimat: "gabangeul ijeobeoryeosseoyo. jibe dasi gajyeowaya haeyo.",
-    artiKalimat: "Saya lupa tas saya. Saya harus mengambilnya kembali di rumah.",
-  },
-  {
-    hangeul: "기차",
-    pelafalan: "gicha",
-    arti: "Kereta api",
-    contohKalimat: "서울로 가는 기차가 몇 시에 있어요?",
-    pelafalanKalimat: "Seoulloro ganeun gichaga myeot sie isseoyo?",
-    artiKalimat: "Pukul berapa kereta menuju Seoul?",
-  },
-  {
-    hangeul: "버스",
-    pelafalan: "beoseu",
-    arti: "Bus",
-    contohKalimat: "이 버스는 시내를 다니나요?",
-    pelafalanKalimat: "i beoseuneun sinaereul daninayo?",
-    artiKalimat: "Apakah bus ini beroperasi di kota?",
-  },
-];
+const levelSelect = document.getElementById("levelSelect");
+let selectedLevel = levelSelect.value; // Ambil value level yang aktif saat halaman dimuat
 
-const questions = [];
+levelSelect.addEventListener("change", function () {
+  selectedLevel = levelSelect.value; // Ambil value level yang dipilih
+  console.log(`Level yang dipilih: ${selectedLevel}`);
+  if (selectedLevel === "level1") {
+    kosakataKorea = kataKorea.level1;
+    location.reload();
+  } else if (selectedLevel === "level2") {
+    kosakataKorea = kataKorea.level2;
+    location.reload();
+  }
+});
+
+let kosakataKorea; // Deklarasikan variabel kosakataKorea di luar blok if-else
+
+if (selectedLevel === "level1") {
+  kosakataKorea = kataKorea.level1;
+} else if (selectedLevel === "level2") {
+  kosakataKorea = kataKorea.level2;
+}
+
+let questions = [];
 
 // Ambil 10 data pertama dari kosakataKorea untuk membuat 10 soal
 const randomIndices = [];
@@ -230,6 +90,7 @@ function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
   nextButton.innerHTML = "Next";
+  resetState(); // Pastikan state direset sebelum menampilkan pertanyaan baru
   showQuestion();
 }
 
@@ -238,7 +99,6 @@ function showQuestion() {
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
   quiestionElement.innerHTML = questionNo + ". " + currentQuestion.question;
-  console.log(currentQuestion);
   const exampleSentence = document.getElementById("exampleSentence");
   const meaningOfSentence = document.getElementById("meaningOfSentence");
   const pronunciation = document.getElementById("pronunciation");
@@ -338,3 +198,41 @@ function speakInKorean() {
 }
 
 startQuiz();
+
+const informationButton = document.querySelector(".informationButton");
+const informationList = document.getElementById("informationList");
+
+informationButton.addEventListener("click", () => {
+  informationList.classList.toggle("hidden");
+  informationButton.classList.toggle("active");
+
+  // Ambil teks asli dari atribut data-text
+  const originalText = informationButton.dataset.text;
+
+  // Ganti teks tombol berdasarkan class active
+  if (informationButton.classList.contains("active")) {
+    informationButton.innerText = "x";
+  } else {
+    informationButton.innerText = "i";
+  }
+});
+
+// Ambil elemen list ul yang akan diisi
+const infoList = document.getElementById("infoList");
+
+// Fungsi untuk membuat elemen list berdasarkan data kosakataKorea
+function createListItems(data) {
+  return data
+    .map(
+      (item) =>
+        `<li>
+          ${item.hangeul}<br>
+          (${item.pelafalan})<br>
+          ${item.arti}
+        </li>`
+    )
+    .join("<br>");
+}
+
+// Tampilkan data kosakataKorea dalam elemen list
+infoList.innerHTML = createListItems(kosakataKorea);

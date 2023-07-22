@@ -78,5 +78,62 @@ body {
   font-size: 18px;
   font-weight: 800;
   text-align: center;
-  
+}
+
+.lvl {
+  background: #fff;
+  color: #222;
+  font-size: 18px;
+  font-weight: 800;
+  width: 70%;
+  border: 1px solid #222;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.lvl:hover {
+  background: #222;
+  color: #fff;
+}
+.informationButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Properti border-radius 50% akan membuat tombol menjadi bentuk bulat */
+  background-color: rgb(195, 193, 193);
+  font-size: 20px; /* Ukuran teks tombol */
+  border: 1px; /* Menghilangkan border tombol */
+  cursor: pointer;
+  margin: 10px 0;
+  z-index: 10000;
+}
+
+#informationList {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: hidden;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#informationList ul {
+  list-style: none;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#informationList li {
+  font-size: 16px;
+  margin: 10px 0;
 }

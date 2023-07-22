@@ -9,6 +9,13 @@
   <body>
     <div class="app">
       <h1>Hangeul Quiz</h1>
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <select id="levelSelect" class="lvl">
+          <option value="level1">Level 1</option>
+          <option value="level2">Level 2</option>
+        </select>
+        <button class="informationButton">i</button>
+      </div>
       <div class="quiz">
         <h2 id="question">Question goes here</h2>
         <div id="answer-buttons">
@@ -27,8 +34,12 @@
           <p id="meaningOfSentence"></p>
         </div>
       </div>
+      <div id="informationList" class="hidden">
+        <ul id="infoList"></ul>
+      </div>
     </div>
 
+    <script src="data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
