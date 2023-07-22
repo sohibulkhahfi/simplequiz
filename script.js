@@ -2,14 +2,19 @@ const levelSelect = document.getElementById("levelSelect");
 let selectedLevel = levelSelect.value; // Ambil value level yang aktif saat halaman dimuat
 
 levelSelect.addEventListener("change", function () {
-  selectedLevel = levelSelect.value; // Ambil value level yang dipilih
-  console.log(`Level yang dipilih: ${selectedLevel}`);
+  selectedLevel = levelSelect.value; // Perbarui nilai selectedLevel saat pilihan level berubah
   if (selectedLevel === "level1") {
     kosakataKorea = kataKorea.level1;
-    location.reload();
+    questions = [];
+    makeQuestion();
+    startQuiz();
+    resetInfoList();
   } else if (selectedLevel === "level2") {
     kosakataKorea = kataKorea.level2;
-    location.reload();
+    questions = [];
+    makeQuestion();
+    startQuiz();
+    resetInfoList();
   }
 });
 
@@ -23,60 +28,64 @@ if (selectedLevel === "level1") {
 
 let questions = [];
 
-// Ambil 10 data pertama dari kosakataKorea untuk membuat 10 soal
-const randomIndices = [];
-while (randomIndices.length < 10) {
-  const randomIndex = Math.floor(Math.random() * kosakataKorea.length);
-  if (!randomIndices.includes(randomIndex)) {
-    randomIndices.push(randomIndex);
-  }
-}
-
-for (let i = 0; i < 10; i++) {
-  const kosakataIndex = randomIndices[i];
-  const currentKosakata = kosakataKorea[kosakataIndex];
-
-  const question = {
-    hangeul: currentKosakata.hangeul,
-    pelafalan: currentKosakata.pelafalan,
-    arti: currentKosakata.arti,
-    contohKalimat: currentKosakata.contohKalimat,
-    pelafalanKalimat: currentKosakata.pelafalanKalimat,
-    artiKalimat: currentKosakata.artiKalimat,
-    question: "Kata manakah yang berarti " + currentKosakata.arti + "?",
-    answers: [
-      {
-        text: kosakataKorea[kosakataIndex].hangeul,
-        correct: true,
-        arti: kosakataKorea[kosakataIndex].arti,
-        pelafalan: kosakataKorea[kosakataIndex].pelafalan,
-      },
-    ],
-  };
-
-  // Ambil 3 kata lain secara acak untuk dijadikan pilihan jawaban
-  const randomAnswerIndices = [];
-  while (randomAnswerIndices.length < 3) {
-    const randomAnswerIndex = Math.floor(Math.random() * kosakataKorea.length);
-    if (!randomAnswerIndices.includes(randomAnswerIndex) && randomAnswerIndex !== kosakataIndex) {
-      randomAnswerIndices.push(randomAnswerIndex);
+function makeQuestion() {
+  // Ambil 10 data pertama dari kosakataKorea untuk membuat 10 soal
+  const randomIndices = [];
+  while (randomIndices.length < 10) {
+    const randomIndex = Math.floor(Math.random() * kosakataKorea.length);
+    if (!randomIndices.includes(randomIndex)) {
+      randomIndices.push(randomIndex);
     }
   }
 
-  for (const index of randomAnswerIndices) {
-    question.answers.push({
-      text: kosakataKorea[index].hangeul,
-      correct: false,
-      arti: kosakataKorea[index].arti,
-      pelafalan: kosakataKorea[index].pelafalan,
-    });
+  for (let i = 0; i < 10; i++) {
+    const kosakataIndex = randomIndices[i];
+    const currentKosakata = kosakataKorea[kosakataIndex];
+
+    const question = {
+      hangeul: currentKosakata.hangeul,
+      pelafalan: currentKosakata.pelafalan,
+      arti: currentKosakata.arti,
+      contohKalimat: currentKosakata.contohKalimat,
+      pelafalanKalimat: currentKosakata.pelafalanKalimat,
+      artiKalimat: currentKosakata.artiKalimat,
+      question: "Kata manakah yang berarti " + currentKosakata.arti + "?",
+      answers: [
+        {
+          text: kosakataKorea[kosakataIndex].hangeul,
+          correct: true,
+          arti: kosakataKorea[kosakataIndex].arti,
+          pelafalan: kosakataKorea[kosakataIndex].pelafalan,
+        },
+      ],
+    };
+
+    // Ambil 3 kata lain secara acak untuk dijadikan pilihan jawaban
+    const randomAnswerIndices = [];
+    while (randomAnswerIndices.length < 3) {
+      const randomAnswerIndex = Math.floor(Math.random() * kosakataKorea.length);
+      if (!randomAnswerIndices.includes(randomAnswerIndex) && randomAnswerIndex !== kosakataIndex) {
+        randomAnswerIndices.push(randomAnswerIndex);
+      }
+    }
+
+    for (const index of randomAnswerIndices) {
+      question.answers.push({
+        text: kosakataKorea[index].hangeul,
+        correct: false,
+        arti: kosakataKorea[index].arti,
+        pelafalan: kosakataKorea[index].pelafalan,
+      });
+    }
+
+    // Acak urutan pilihan jawaban
+    question.answers.sort(() => Math.random() - 0.5);
+
+    questions.push(question);
   }
-
-  // Acak urutan pilihan jawaban
-  question.answers.sort(() => Math.random() - 0.5);
-
-  questions.push(question);
 }
+
+makeQuestion();
 
 const quiestionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
@@ -90,7 +99,6 @@ function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
   nextButton.innerHTML = "Next";
-  resetState(); // Pastikan state direset sebelum menampilkan pertanyaan baru
   showQuestion();
 }
 
@@ -180,11 +188,6 @@ nextButton.addEventListener("click", () => {
 function speakInKorean() {
   const textToSpeak = document.getElementById("pronunciation").innerText;
 
-  // Ganti kode berikut dengan panggilan API Text-to-Speech ke layanan bahasa Korea yang Anda gunakan.
-  // Misalnya, Google Text-to-Speech API, IBM Watson Text-to-Speech, atau layanan TTS lainnya.
-  // Di bawah ini adalah contoh kode untuk menggunakan sintesis suara bawaan browser, yang dapat
-  // digunakan jika browser mendukungnya.
-
   if ("speechSynthesis" in window) {
     const msg = new SpeechSynthesisUtterance();
     msg.text = textToSpeak;
@@ -234,5 +237,12 @@ function createListItems(data) {
     .join("<br>");
 }
 
-// Tampilkan data kosakataKorea dalam elemen list
-infoList.innerHTML = createListItems(kosakataKorea);
+// menampilkan data ke element infoList
+function resetInfoList() {
+  // Hapus semua elemen yang ada di dalam infoList sebelum menambahkan data baru
+  infoList.innerHTML = "";
+  // Tampilkan data kosakataKorea dalam elemen list
+  infoList.innerHTML = createListItems(kosakataKorea);
+}
+
+resetInfoList();
