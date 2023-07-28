@@ -105,11 +105,12 @@ body {
   font-size: 20px; /* Ukuran teks tombol */
   border: 1px; /* Menghilangkan border tombol */
   cursor: pointer;
-  margin: 10px 0;
+  margin: 10px 20px 10px 0;
   z-index: 10000;
 }
 
 #informationList {
+  background: #1b6ced;
   position: fixed;
   top: 0;
   left: 0;
@@ -124,7 +125,8 @@ body {
 
 #informationList ul {
   list-style: none;
-  padding: 20px;
+  padding-left: 30px;
+  padding-bottom: 150px;
   background: #fff;
   border-radius: 10px;
   display: flex;

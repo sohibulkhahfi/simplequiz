@@ -3,19 +3,37 @@ let selectedLevel = levelSelect.value; // Ambil value level yang aktif saat hala
 
 levelSelect.addEventListener("change", function () {
   selectedLevel = levelSelect.value; // Perbarui nilai selectedLevel saat pilihan level berubah
+
   if (selectedLevel === "level1") {
     kosakataKorea = kataKorea.level1;
-    questions = [];
-    makeQuestion();
-    startQuiz();
-    resetInfoList();
   } else if (selectedLevel === "level2") {
     kosakataKorea = kataKorea.level2;
-    questions = [];
-    makeQuestion();
-    startQuiz();
-    resetInfoList();
+  } else if (selectedLevel === "level3") {
+    kosakataKorea = kataKorea.level3;
+  } else if (selectedLevel === "level4") {
+    kosakataKorea = kataKorea.level4;
+  } else if (selectedLevel === "level5") {
+    kosakataKorea = kataKorea.level5;
+  } else if (selectedLevel === "level6") {
+    kosakataKorea = kataKorea.level6;
+  } else if (selectedLevel === "level7") {
+    kosakataKorea = kataKorea.level7;
+  } else if (selectedLevel === "level8") {
+    kosakataKorea = kataKorea.level8;
+  } else if (selectedLevel === "level9") {
+    kosakataKorea = kataKorea.level9;
+  } else if (selectedLevel === "level10") {
+    kosakataKorea = kataKorea.level10;
+  } else if (selectedLevel === "level11") {
+    kosakataKorea = kataKorea.level11;
+  } else if (selectedLevel === "level12") {
+    kosakataKorea = kataKorea.level12;
   }
+
+  questions = [];
+  makeQuestion();
+  startQuiz();
+  resetInfoList();
 });
 
 let kosakataKorea; // Deklarasikan variabel kosakataKorea di luar blok if-else
@@ -186,7 +204,7 @@ nextButton.addEventListener("click", () => {
 });
 
 function speakInKorean() {
-  const textToSpeak = document.getElementById("pronunciation").innerText;
+  const textToSpeak = document.getElementById("exampleSentence").innerText;
 
   if ("speechSynthesis" in window) {
     const msg = new SpeechSynthesisUtterance();
@@ -231,7 +249,7 @@ function createListItems(data) {
         `<li>
           ${item.hangeul}<br>
           (${item.pelafalan})<br>
-          ${item.arti}
+          ${item.arti}<br>
         </li>`
     )
     .join("<br>");
